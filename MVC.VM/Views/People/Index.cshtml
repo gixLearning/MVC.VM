@@ -1,0 +1,37 @@
+﻿@model MVC.MV.Models.PersonViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="row">
+    <form method="get">
+        <div class="form-group">
+            <label for="seach">Search</label>
+            <input type="text" class="form-control" id="seach" name="searchtext" placeholder="Search by name..." />
+        </div>
+        <button class="btn btn-primary" type="submit">Seach</button>
+    </form>
+</div>
+<hr />
+<div class="row">
+    <table class="table table-striped">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Person.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Person.Phonenumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Person.City)</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.People) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phonenumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.Name })</td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="row">
+    @Html.Partial("_CreateNewPerson")
+</div>
